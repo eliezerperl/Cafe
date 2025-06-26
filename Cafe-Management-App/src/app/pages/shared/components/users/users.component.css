@@ -1,0 +1,51 @@
+.header-actions {
+  text-align: right;
+  margin: 10px 0;
+}
+
+.add-btn {
+  padding: 5px 12px;
+  font-size: 14px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.add-btn:hover {
+  background-color: #45a049;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th, .user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+.action-btn {
+  margin-right: 5px;
+  padding: 4px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit { background-color: #2196f3; color: white; }
+.save { background-color: #4caf50; color: white; }
+.cancel { background-color: #f44336; color: white; }
+.delete { background-color: #e91e63; color: white; }
+
+.action-btn:hover {
+  opacity: 0.9;
+}

@@ -1,0 +1,63 @@
+.store-header {
+  display: flex;
+  justify-content: center;
+}
+
+.store-container {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+  max-width: 80%;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #f7f8fa;
+}
+
+.beverage-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.beverage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.beverage-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.beverage-card p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.beverage-card button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.beverage-card button:hover {
+  background: #0056b3;
+}
+
+.beverage-card button:disabled {
+  background: gray;
+  cursor: not-allowed;
+}

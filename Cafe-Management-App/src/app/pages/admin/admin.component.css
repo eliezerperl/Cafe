@@ -1,0 +1,56 @@
+/* Full page layout */
+:host {
+  display: flex;
+  flex-direction: column;
+  height:100%; /* Full viewport height */
+}
+
+.dashboard-title {
+  padding: 1rem;
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Tabs bar */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ccc;
+  background-color: #fff;
+}
+
+.tabs button {
+  flex: 1; /* Make buttons span full width equally */
+  padding: 1rem;
+  font-size: 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: 0.3s;
+  border-bottom: 3px solid transparent;
+}
+
+.tabs button:hover {
+  background-color: #f5f5f5;
+}
+
+.tabs button.active {
+  border-bottom: 3px solid #007bff;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Main content area */
+.tab-container {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+  background-color: #fafafa;
+}
+
+.tab-content {
+  width: 100%;
+  height: 100%;
+}

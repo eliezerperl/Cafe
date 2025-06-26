@@ -1,0 +1,45 @@
+<div class="cart-page">
+  <h2>Your Cart</h2>
+
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+    <button (click)="backToStore()">Back to Store</button>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="content-holder">
+    <!-- Left: Scrollable cart items -->
+    <section class="cart-items-container">
+      <div class="cart-items">
+        <div *ngFor="let item of cartItems" class="cart-item">
+          <div>
+            <strong>{{ item.beverage.type }}</strong>
+            <p>₪{{ item.beverage.price }}</p>
+            <p>In Stock: {{ item.beverage.unitsInStock }}</p>
+          </div>
+          <div class="cart-controls">
+            <button (click)="decrease(item)">−</button>
+            <span>{{ item.quantity }}</span>
+            <button
+              (click)="increase(item)"
+              [disabled]="item.quantity >= item.beverage.unitsInStock"
+            >
+              +
+            </button>
+            <button class="remove" (click)="remove(item)">🗑️</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: Fixed summary -->
+    <section class="cart-summary">
+      <h3>Checkout Summary</h3>
+      <p><strong>Total Items:</strong> {{ getTotalItems() }}</p>
+      <p><strong>Total:</strong> ₪{{ getTotal() }}</p>
+      <div>
+        <button (click)="checkout()">Proceed to Checkout</button>
+        <button (click)="backToStore()">Back to Store</button>
+      </div>
+    </section>
+  </div>
+</div>

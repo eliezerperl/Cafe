@@ -1,0 +1,98 @@
+.confirmation-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 80vh;
+}
+
+.confirmation-box {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem 3rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.content {
+  margin: 3rem;
+}
+
+.confirmation-box h2 {
+  margin-bottom: 0.5rem;
+  color: #2b8a3e;
+  font-size: 1.8rem;
+}
+
+.subtext {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-section {
+  margin-bottom: 1.5rem;
+}
+
+.item-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.item-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item-name {
+  font-weight: 500;
+}
+
+.item-price {
+  font-weight: 400;
+  color: #444;
+}
+
+.total {
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-top: 2px solid #ddd;
+  padding-top: 1rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.confirmation-actions button {
+  background-color: #007bff;
+  border: none;
+  padding: 0.6rem 1rem;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirmation-actions button:hover {
+  background-color: #0056b3;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

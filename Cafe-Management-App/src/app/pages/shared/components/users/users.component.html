@@ -1,0 +1,83 @@
+<div *ngIf="loading" class="loading">Loading users...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<!-- Add New User Button -->
+<div class="header-actions">
+  <button class="add-btn" (click)="startAdd()">＋ Add User</button>
+</div>
+
+<table *ngIf="!loading && users.length" class="user-table">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td *ngIf="editedUser?.id !== user.id">{{ user.userName }}</td>
+      <td *ngIf="editedUser?.id === user.id">
+        <input
+          *ngIf="editedUser"
+          [(ngModel)]="editedUser.userName"
+          placeholder="Username"
+        />
+      </td>
+
+      <td *ngIf="editedUser?.id !== user.id">{{ user.role }}</td>
+      <td *ngIf="editedUser?.id === user.id">
+        <select *ngIf="editedUser && isOwner()" [(ngModel)]="editedUser.role">
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+        <span *ngIf="!isOwner()">USER</span>
+      </td>
+
+      <td>
+        <ng-container
+          *ngIf="
+            editedUser?.id !== user.id &&
+            !(
+              currentUserRole.toUpperCase() === 'ADMIN' &&
+              user.role.toUpperCase() === 'OWNER'
+            )
+          "
+        >
+          <button class="action-btn edit" (click)="startEdit(user)">
+            Edit
+          </button>
+          <button class="action-btn delete" (click)="deleteUser(user.id)">
+            Delete
+          </button>
+        </ng-container>
+        <ng-container *ngIf="editedUser?.id === user.id">
+          <button class="action-btn save" (click)="saveUser()">Save</button>
+          <button class="action-btn cancel" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </ng-container>
+      </td>
+    </tr>
+
+    <!-- Row for Adding New User -->
+    <tr *ngIf="addingUser">
+      <td>
+        <input [(ngModel)]="newUser.userName" placeholder="New Username" />
+      </td>
+      <td>
+        <select *ngIf="isOwner()" [(ngModel)]="newUser.role">
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+        <span *ngIf="!isOwner()">USER</span>
+      </td>
+      <td>
+        <button class="action-btn save" (click)="createUser()">Create</button>
+        <button class="action-btn cancel" (click)="cancelAdd()">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && users.length === 0" class="no-users">
+  No users found.
+</div>

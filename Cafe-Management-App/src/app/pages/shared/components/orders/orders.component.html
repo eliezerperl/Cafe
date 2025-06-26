@@ -1,0 +1,80 @@
+<!-- orders.component.html -->
+
+<div *ngIf="loading" class="loading">Loading orders...</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<div class="header-actions">
+  <h2 class="section-title">Orders</h2>
+</div>
+
+<table *ngIf="!loading && orders.length > 0" class="orders-table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>User</th>
+      <th>Total</th>
+      <th>Ordered</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.id }}</td>
+      <td>{{ order.customerName }}</td>
+      <td>
+        <ng-container *ngIf="editingOrderId === order.id; else viewTotal">
+          <input
+            type="number"
+            [(ngModel)]="editedTotal"
+            class="edit-input"
+            min="0"
+          />
+        </ng-container>
+        <ng-template #viewTotal> ₪{{ order.totalAmount }} </ng-template>
+      </td>
+      <td>{{ order.orderDate | date : "short" }}</td>
+      <td>
+        <!-- View mode: show Edit / Details / Delete -->
+        <ng-container *ngIf="editingOrderId !== order.id; else editMode">
+          <button
+            *ngIf="isOwner()"
+            class="action-btn edit"
+            (click)="startEdit(order)"
+          >
+            Edit
+          </button>
+          <button class="action-btn details" (click)="viewDetails(order.id)">
+            See Order Details
+          </button>
+          <button
+            *ngIf="isOwner()"
+            class="action-btn delete"
+            (click)="deleteOrder(order.id)"
+          >
+            Delete
+          </button>
+        </ng-container>
+
+        <!-- Edit mode: show only Save / Cancel -->
+        <ng-template #editMode>
+          <button class="action-btn save" (click)="saveEdit(order)">
+            Save
+          </button>
+          <button class="action-btn cancel" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-order-details-modal
+  [show]="showModal"
+  [order]="orderDetails"
+  [onClose]="closeModal.bind(this)"
+></app-order-details-modal>
+
+<div *ngIf="!loading && orders.length === 0" class="no-orders">
+  No orders found.
+</div>

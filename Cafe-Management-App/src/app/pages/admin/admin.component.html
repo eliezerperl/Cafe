@@ -1,0 +1,31 @@
+<h2 class="dashboard-title">{{ isOwner() ? "Owner" : "Admin" }} Dashboard</h2>
+
+<div class="tabs">
+  <button [class.active]="activeTab === 'users'" (click)="activeTab = 'users'">
+    Users
+  </button>
+  <button
+    [class.active]="activeTab === 'beverages'"
+    (click)="activeTab = 'beverages'"
+  >
+    Beverages
+  </button>
+  <button
+    [class.active]="activeTab === 'orders'"
+    (click)="activeTab = 'orders'"
+  >
+    Orders
+  </button>
+</div>
+
+<div class="tab-container">
+  <div *ngIf="activeTab === 'users'" class="tab-content">
+    <app-users></app-users>
+  </div>
+  <div *ngIf="activeTab === 'beverages'" class="tab-content">
+    <app-beverages></app-beverages>
+  </div>
+  <div *ngIf="activeTab === 'orders'" class="tab-content">
+    <app-orders></app-orders>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="dashboard-container">
+  <h1 class="dashboard-title">Welcome to Your Dashboard</h1>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h2>Total Orders</h2>
+      <p>{{ totalOrders }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>Total Spent</h2>
+      <p>₪{{ totalSpent }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>Favorite Beverage</h2>
+      <p>{{ favoriteBeverage || 'N/A' }}</p>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <button class="action-btn primary" routerLink="/store">Order Beverages</button>
+    <button class="action-btn" routerLink="/cart">View Cart</button>
+    <button class="action-btn" (click)="openOrderHistory()">Order History</button>
+  </div>
+
+  <app-order-history-modal
+    [orders]="orders"
+    [visible]="showModal"
+    (close)="closeOrderHistory()"
+  ></app-order-history-modal>
+</div>

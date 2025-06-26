@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="back-button-container">
+    <button *ngIf="showBack" class="back-button" (click)="goBack()">
+      ← Back
+    </button>
+  </div>
+  <div class="navbar-brand">Cafe Management</div>
+  <div class="navbar-user" *ngIf="userName$ | async as name">
+    Welcome, {{ name }}!
+  </div>
+
+  <ul class="navbar-links">
+    <li *ngIf="isLoggedIn">
+      <a routerLink="/dashboard" routerLinkActive="active">Home</a>
+    </li>
+
+    <li *ngIf="isAdminOrOwner()">
+      <a routerLink="/admin" routerLinkActive="active">Admin Panel</a>
+    </li>
+
+    <li *ngIf="isLoggedIn">
+      <a (click)="logout()" style="cursor: pointer">Logout</a>
+    </li>
+  </ul>
+
+  <div *ngIf="showCart" class="cart-icon-container">
+    <button class="cart-button" [routerLink]="['/cart']">
+      🛒
+      <span class="cart-count-badge">{{ cartCount }}</span>
+    </button>
+  </div>
+</nav>

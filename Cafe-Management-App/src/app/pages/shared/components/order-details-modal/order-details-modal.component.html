@@ -1,0 +1,39 @@
+<div class="modal-backdrop" *ngIf="show">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Order Details</h2>
+      <button
+        class="invoice-btn"
+        [routerLink]="['/invoice', order?.id]"
+        *ngIf="order?.id"
+      >
+        View Invoice
+      </button>
+    </div>
+
+    <p><strong>Customer:</strong> {{ order?.customerName }}</p>
+    <p><strong>Total:</strong> ₪{{ order?.totalAmount }}</p>
+
+    <h3>Beverages</h3>
+    <table class="details-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of order?.beverageOrders">
+          <td>{{ item.beverage.type }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₪{{ item.beverage.price }}</td>
+          <td>₪{{ item.quantity * item.beverage.price }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="action-btn cancel" (click)="onClose()">Close</button>
+  </div>
+</div>

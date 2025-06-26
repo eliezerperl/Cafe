@@ -1,0 +1,41 @@
+<div class="modal-backdrop" *ngIf="visible">
+  <div class="modal">
+    <h2>Your Order History</h2>
+
+    <div *ngIf="orders.length === 0" class="no-orders">
+      You haven't placed any orders yet.
+    </div>
+
+    <table *ngIf="orders.length" class="history-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Items</th>
+          <th>Invoice</th>
+          <!-- ✅ New column -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.orderDate | date : "short" }}</td>
+          <td>₪{{ order.totalAmount }}</td>
+          <td>
+            <ul class="item-list">
+              <li *ngFor="let item of order.beverageOrders">
+                {{ item.beverage.type }} × {{ item.quantity }}
+              </li>
+            </ul>
+          </td>
+          <td>
+            <button class="invoice-btn" [routerLink]="['/invoice', order.id]">
+              View Invoice
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="action-btn cancel" (click)="closeModal()">Close</button>
+  </div>
+</div>

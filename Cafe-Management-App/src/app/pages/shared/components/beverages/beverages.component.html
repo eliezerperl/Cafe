@@ -1,0 +1,84 @@
+<div *ngIf="loading" class="loading-text">Loading beverages...</div>
+<div *ngIf="error" class="error-text">{{ error }}</div>
+
+<!-- Add New Beverage Button -->
+<div class="header-actions">
+  <button class="add-btn" (click)="startAdd()">＋ Add Beverage</button>
+</div>
+
+<main class="main-container">
+  <section>
+    <table *ngIf="!loading && beverages.length" class="beverages-table">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Units In Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let beverage of beverages">
+          <!-- Type -->
+          <td *ngIf="editingId !== beverage.id">{{ beverage.type }}</td>
+          <td *ngIf="editingId === beverage.id">
+            <div>{{ beverage.type }}</div>
+          </td>
+
+          <!-- Price -->
+          <td *ngIf="editingId !== beverage.id">₪{{ beverage.price }}</td>
+          <td *ngIf="editingId === beverage.id">
+            <input type="number" [(ngModel)]="editPrice" min="1" />
+          </td>
+
+          <!-- Units In Stock -->
+          <td *ngIf="editingId !== beverage.id">{{ beverage.unitsInStock }}</td>
+          <td *ngIf="editingId === beverage.id">
+            <input type="number" [(ngModel)]="editUnitsInStock" min="0" />
+          </td>
+
+          <!-- Actions -->
+          <td class="action-buttons">
+            <ng-container *ngIf="editingId !== beverage.id">
+              <button class="action-btn edit" (click)="startEditing(beverage)">Edit</button>
+              <button class="action-btn delete" (click)="deleteBeverage(beverage.id)">Delete</button>
+            </ng-container>
+
+            <ng-container *ngIf="editingId === beverage.id">
+              <button class="action-btn save" (click)="saveEdit(beverage)">Save</button>
+              <button class="action-btn cancel" (click)="cancelEditing()">Cancel</button>
+            </ng-container>
+          </td>
+        </tr>
+        <!-- Row for Adding New Beverage -->
+        <tr *ngIf="addingBeverage">
+          <td><input [(ngModel)]="newBeverage.type" placeholder="Type" /></td>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="newBeverage.price"
+              min="1"
+              placeholder="Price"
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              [(ngModel)]="newBeverage.unitsInStock"
+              min="0"
+              placeholder="Stock"
+            />
+          </td>
+          <td>
+            <button class="action-btn save" (click)="createBeverage()">
+              Create
+            </button>
+            <button class="action-btn cancel" (click)="cancelAdd()">
+              Cancel
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</main>

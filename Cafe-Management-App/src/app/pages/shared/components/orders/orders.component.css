@@ -1,0 +1,99 @@
+.loading,
+.error,
+.no-orders {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.error {
+  color: #e53935;
+}
+
+.section-title {
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.header-actions {
+  text-align: left;
+  margin: 10px 0;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.orders-table th {
+  background-color: #f9f9f9;
+  text-align: left;
+}
+
+.edit-input {
+  width: 80px;
+  padding: 4px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+.action-btn {
+  padding: 4px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.details {
+  background-color: #4caf50;
+  color: white;
+}
+
+.details:hover {
+  opacity: 0.9;
+}
+
+.delete {
+  background-color: #e91e63;
+  color: white;
+}
+
+.delete:hover {
+  opacity: 0.9;
+}
+.edit {
+  background-color: #2196f3;
+  color: white;
+}
+
+.edit:hover {
+  opacity: 0.9;
+}
+
+.save {
+  background-color: #2196f3;
+  color: white;
+}
+
+.save:hover {
+  opacity: 0.9;
+}
+
+.cancel {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancel:hover {
+  opacity: 0.9;
+}
