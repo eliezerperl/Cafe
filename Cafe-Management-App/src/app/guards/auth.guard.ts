@@ -2,12 +2,11 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { SharedService } from '../services/shared.service';
-import { UserService } from '../services/user.service';
+import { firstValueFrom } from 'rxjs';
 
 export const authGuard = async () => {
   const authService = inject(AuthService);
   const sharedService = inject(SharedService);
-  const userService = inject(UserService);
   const router = inject(Router);
 
   const redirectToLogin = () => {
@@ -15,10 +14,18 @@ export const authGuard = async () => {
     router.navigate(['/login']);
   };
 
-  if (!authService.isLoggedIn()) {
-    console.log('AuthGuard Not logged In');
+  try {
+    const user = await firstValueFrom(authService.validate());
+    if (user && user.id) {
+      return true;
+    } else {
+      console.log('AuthGuard: Invalid user returned from validate');
+      redirectToLogin();
+      return false;
+    }
+  } catch (err) {
+    console.warn('AuthGuard: Backend validation failed', err);
     redirectToLogin();
     return false;
   }
-  return true;
 };

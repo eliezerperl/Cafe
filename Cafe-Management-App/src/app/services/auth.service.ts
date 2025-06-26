@@ -21,17 +21,20 @@ export class AuthService {
     return this.http.post<AuthResponse>(`${this.apiUrl}/login`, credentials);
   }
 
-  changePassword(
-    data: { username: string; oldPassword: string; newPassword: string }
-  ) {
-    return this.http.put<void>(
-      `${this.apiUrl}/change-password`,
-      data
-    );
+  changePassword(data: {
+    username: string;
+    oldPassword: string;
+    newPassword: string;
+  }) {
+    return this.http.put<void>(`${this.apiUrl}/change-password`, data);
   }
 
   register(credentials: AuthRequest): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/register`, credentials);
+  }
+
+  validate(): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/validate`);
   }
 
   refresh(userId: string | null): Observable<AuthResponse> {

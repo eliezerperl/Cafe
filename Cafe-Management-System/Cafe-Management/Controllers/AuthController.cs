@@ -1,4 +1,5 @@
-﻿using Cafe_ManagementDAL.Entities;
+﻿using System.Security.Claims;
+using Cafe_ManagementDAL.Entities;
 using Cafe_ManagementDAL.Entities.DTOs;
 using Cafe_ManagementDAL.Services.Intefaces;
 using Microsoft.AspNetCore.Authorization;
@@ -61,9 +62,31 @@ namespace Cafe_Management.Controllers
 		}
 
 		[HttpPost("logout")]
-		public IActionResult Logout() {
+		public IActionResult Logout()
+		{
 			Response.Cookies.Delete("jwtToken");
 			return NoContent(); // 204
+		}
+
+		[HttpGet("validate")]
+		[Authorize]
+		public IActionResult Validate()
+		{
+			var userId = User.FindFirst("id")?.Value;
+			var username = User.FindFirst("username")?.Value;
+			var role = User.FindFirst(ClaimTypes.Role)?.Value;
+
+			if (userId == null || username == null || role == null)
+			{
+				return Unauthorized();
+			}
+
+			return Ok(new
+			{
+				Id = userId,
+				Username = username,
+				Role = role
+			});
 		}
 
 		[HttpPut("change-password")] //for any user to change password or username
@@ -71,7 +94,7 @@ namespace Cafe_Management.Controllers
 		{
 
 			await _authSrv.ChangeCredentials(credDto); // This will update the user credentials in the database
-																										 //NO NEED TO CHECK FOR NULL HERE AS IT WILL BE HANDLED BY THE SERVICE
+																								 //NO NEED TO CHECK FOR NULL HERE AS IT WILL BE HANDLED BY THE SERVICE
 			return NoContent();
 		}
 
@@ -87,7 +110,8 @@ namespace Cafe_Management.Controllers
 		}
 
 		[ApiExplorerSettings(IgnoreApi = true)]
-		public CookieOptions CookieOptions() {
+		public CookieOptions CookieOptions()
+		{
 			CookieOptions options = new CookieOptions
 			{
 				Expires = DateTime.UtcNow.AddMinutes(7),
