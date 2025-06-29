@@ -1,4 +1,4 @@
-# Cafe Management App
+# Cafe Ordering and Management App
 
 A full-stack Cafe Management application with an **Angular** frontend and a **.NET Core Web API** backend using **MSSQL**.
 
