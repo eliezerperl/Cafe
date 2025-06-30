@@ -16,22 +16,6 @@ namespace Cafe_Management {
 			try {
 				await _next(context);
 			}
-			catch (ArgumentException ex) {
-				_logger.LogError(ex, $"Something went wrong: {ex.Message}");
-				await HandleExceptionAsync(context, ex);
-			}
-			catch (NullReferenceException ex) {
-				_logger.LogError(ex, $"Something went wrong: {ex.Message}");
-				await HandleExceptionAsync(context, ex);
-			}
-			catch (UnauthorizedAccessException ex) {
-				_logger.LogError(ex, $"Something went wrong: {ex.Message}");
-				await HandleExceptionAsync(context, ex);
-			}
-			catch (InvalidOperationException ex) {
-				_logger.LogError(ex, $"Something went wrong: {ex.Message}");
-				await HandleExceptionAsync(context, ex);
-			}
 			catch (Exception ex) {
 				_logger.LogError(ex, $"Something went wrong: {ex.Message}");
 				await HandleExceptionAsync(context, ex);
