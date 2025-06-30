@@ -113,6 +113,26 @@ namespace Cafe_ManagementDAL.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("ErrorLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StackTrace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ErrorLogs");
+                });
+
             modelBuilder.Entity("Cafe_ManagementDAL.Entities.Order", b =>
                 {
                     b.HasOne("Cafe_ManagementDAL.Entities.User", "User")

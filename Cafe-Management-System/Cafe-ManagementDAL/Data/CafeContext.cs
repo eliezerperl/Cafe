@@ -26,5 +26,7 @@ namespace Cafe_ManagementDAL.Data {
 		public DbSet<Order> Orders { get; set; }
 
 		public DbSet<SingleBeverageTypeOrder> BeverageOrders { get; set; }
+
+		public DbSet<ErrorLog> ErrorLogs { get; set; }
 	}
 }
