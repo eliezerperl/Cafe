@@ -5,3 +5,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+:root {
+  --primary: #8c5e3c;        /* rich coffee brown */
+  --secondary: #fdf7f2;      /* creamy beige */
+  --accent: #e6dac5;         /* light coffee foam */
+  --text-dark: #4a3b2e;
+  --text-light: #ffffff;
+  --error: #e63946;
+}

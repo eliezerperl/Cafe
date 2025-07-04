@@ -1,6 +1,7 @@
 .store-header {
   display: flex;
   justify-content: center;
+  color: var(--text-light);
 }
 
 .store-container {
@@ -12,11 +13,11 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 2rem;
-  background-color: #f7f8fa;
+  background-color: var(--secondary);
 }
 
 .beverage-card {
-  background: white;
+  background: var(--text-light);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
@@ -34,27 +35,27 @@
 .beverage-card h3 {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
-  color: #333;
+  color: var(--text-dark);
 }
 
 .beverage-card p {
   margin: 0.25rem 0;
-  color: #555;
+  color: var(--text-dark);
 }
 
 .beverage-card button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background: #007bff;
+  background: var(--primary);
   border: none;
   border-radius: 6px;
-  color: white;
+  color: var(--text-light);
   cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .beverage-card button:hover {
-  background: #0056b3;
+  background: #6e472d;
 }
 
 .beverage-card button:disabled {

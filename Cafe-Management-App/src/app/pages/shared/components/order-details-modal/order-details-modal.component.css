@@ -1,12 +1,10 @@
-/* order-details-modal.component.css */
-
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,18 +18,19 @@
 }
 
 .modal {
-  background: #fff;
+  background: var(--secondary); /* creamy background */
   padding: 20px;
   width: 80%;
   max-width: 500px;
   max-height: 80%;
   overflow-y: auto;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .modal h2 {
   margin-top: 0;
+  color: var(--primary);
 }
 
 .details-table {
@@ -43,20 +42,21 @@
 .details-table th,
 .details-table td {
   padding: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--accent);
   text-align: left;
+  color: var(--text-dark);
 }
 
 .details-table th {
-  background-color: #f9f9f9;
+  background-color: var(--accent);
 }
 
 .action-btn.cancel {
   display: block;
   margin-top: 15px;
   padding: 8px 16px;
-  background-color: #f44336; /* red */
-  color: white;
+  background-color: var(--error);
+  color: var(--text-light);
   border: none;
   cursor: pointer;
   border-radius: 4px;
@@ -67,8 +67,8 @@
 }
 
 .invoice-btn {
-  background-color: #1976d2;
-  color: #fff;
+  background-color: var(--primary);
+  color: var(--text-light);
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
@@ -78,5 +78,5 @@
 }
 
 .invoice-btn:hover {
-  background-color: #125ea8;
+  background-color: #6e472d; /* darker cafe brown for hover */
 }

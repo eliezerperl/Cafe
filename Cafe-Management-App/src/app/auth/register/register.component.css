@@ -9,7 +9,7 @@
   align-items: center;
   margin: 80px auto;
   padding: 40px;
-  background: #ffffff;
+  background: var(--text-light); 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   text-align: center;
@@ -29,26 +29,26 @@ label {
   display: block;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--text-dark);
 }
 
 .input-field {
   padding: 10px 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent);
   border-radius: 8px;
   font-size: 16px;
   transition: border 0.3s;
 }
 
 .input-field:focus {
-  border-color: #007bff;
+  border-color: var(--primary);
   outline: none;
 }
 
 .primary-btn {
   padding: 12px;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary);
+  color: var(--text-light);
   border: none;
   border-radius: 8px;
   font-weight: 600;
@@ -58,15 +58,15 @@ label {
 }
 
 .primary-btn:hover {
-  background-color: #0056b3;
+  background-color: #6b4328;
 }
 
 .secondary-btn {
   margin-top: 10px;
   padding: 10px;
   background-color: transparent;
-  border: 2px solid #007bff;
-  color: #007bff;
+  border: 2px solid var(--primary);
+  color: var(--primary);
   border-radius: 8px;
   font-weight: 600;
   font-size: 16px;
@@ -75,12 +75,12 @@ label {
 }
 
 .secondary-btn:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary);
+  color: var(--text-light);
 }
 
 .error-message {
-  color: #d9534f;
+  color: var(--error);
   font-weight: 600;
 }
 

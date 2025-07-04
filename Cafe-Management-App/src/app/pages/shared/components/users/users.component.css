@@ -6,15 +6,15 @@
 .add-btn {
   padding: 5px 12px;
   font-size: 14px;
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--primary); /* was #4caf50 */
+  color: var(--text-light);
   border: none;
   cursor: pointer;
   border-radius: 3px;
 }
 
 .add-btn:hover {
-  background-color: #45a049;
+  background-color: #6e472d; /* darker version of --primary */
 }
 
 .user-table {
@@ -22,13 +22,15 @@
   border-collapse: collapse;
 }
 
-.user-table th, .user-table td {
-  border: 1px solid #ddd;
+.user-table th,
+.user-table td {
+  border: 1px solid var(--accent); /* was #ddd */
   padding: 8px;
+  color: var(--text-dark);
 }
 
 .user-table th {
-  background-color: #f2f2f2;
+  background-color: var(--accent); /* was #f2f2f2 */
   text-align: left;
 }
 
@@ -39,12 +41,24 @@
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  color: var(--text-light);
 }
 
-.edit { background-color: #2196f3; color: white; }
-.save { background-color: #4caf50; color: white; }
-.cancel { background-color: #f44336; color: white; }
-.delete { background-color: #e91e63; color: white; }
+.edit {
+  background-color: #2196f3; /* optional: keep or replace */
+}
+
+.save {
+  background-color: var(--primary); /* was #4caf50 */
+}
+
+.cancel {
+  background-color: var(--error); /* was #f44336 */
+}
+
+.delete {
+  background-color: #e91e63; /* optional: keep or assign another */
+}
 
 .action-btn:hover {
   opacity: 0.9;

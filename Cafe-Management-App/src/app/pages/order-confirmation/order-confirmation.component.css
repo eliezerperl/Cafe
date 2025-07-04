@@ -2,12 +2,11 @@
   display: flex;
   justify-content: center;
   padding: 2rem;
-  background-color: #f9f9f9;
-  min-height: 80vh;
+
 }
 
 .confirmation-box {
-  background-color: #fff;
+  background-color: var(--text-light);
   border-radius: 12px;
   padding: 2rem 3rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
@@ -22,13 +21,13 @@
 
 .confirmation-box h2 {
   margin-bottom: 0.5rem;
-  color: #2b8a3e;
+  color: var(--primary);
   font-size: 1.8rem;
 }
 
 .subtext {
   font-size: 0.95rem;
-  color: #666;
+  color: var(--text-dark);
   margin-bottom: 1.5rem;
 }
 
@@ -46,7 +45,7 @@
   display: flex;
   justify-content: space-between;
   padding: 0.4rem 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--accent);
 }
 
 .item-name {
@@ -55,13 +54,13 @@
 
 .item-price {
   font-weight: 400;
-  color: #444;
+  color: var(--text-dark);
 }
 
 .total {
   font-size: 1.1rem;
   font-weight: bold;
-  border-top: 2px solid #ddd;
+  border-top: 2px solid var(--accent);
   padding-top: 1rem;
 }
 
@@ -73,17 +72,17 @@
 }
 
 .confirmation-actions button {
-  background-color: #007bff;
+  background-color: var(--primary);
   border: none;
   padding: 0.6rem 1rem;
-  color: white;
+  color: var(--text-light);
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .confirmation-actions button:hover {
-  background-color: #0056b3;
+  background-color: #6e472d;
 }
 
 @keyframes fadeIn {

@@ -2,10 +2,9 @@
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: var(--secondary);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
 }
 
 .checkout-title {
@@ -13,10 +12,12 @@
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
+  color: var(--text-light);
 }
 
 .empty-cart {
   text-align: center;
+  color: var(--text-light);
 }
 
 .cart-list {
@@ -27,13 +28,15 @@
 
 .cart-list li {
   padding: 8px 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--accent);
+  color: var(--text-dark);
 }
 
 .checkout-total {
   font-size: 18px;
   margin-bottom: 20px;
   text-align: right;
+  color: var(--text-dark); /* added */
 }
 
 .checkout-buttons {
@@ -49,24 +52,24 @@
   cursor: pointer;
   font-weight: 500;
   transition: background-color 0.3s ease;
+  color: var(--text-light);
 }
 
 .btn-confirm {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary); /* was #007bff */
 }
 
 .btn-confirm:hover {
-  background-color: #0056b3;
+  background-color: #6b4328; /* darker shade of primary, no variable yet */
 }
 
 .btn-back,
 .btn-store {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: var(--accent); /* was #f0f0f0 */
+  color: var(--text-dark); /* was #333 */
 }
 
 .btn-back:hover,
 .btn-store:hover {
-  background-color: #ddd;
+  background-color: var(--secondary); /* was #ddd */
 }

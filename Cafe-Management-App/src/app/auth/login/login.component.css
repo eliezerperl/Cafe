@@ -9,7 +9,7 @@
   align-items: center;
   margin: 80px auto;
   padding: 40px;
-  background: #ffffff;
+  background: var(--text-light); /* was #ffffff */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   text-align: center;
@@ -29,26 +29,26 @@ label {
   display: block;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--text-dark); /* was #333 */
 }
 
 .input-field {
   padding: 10px 15px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent); /* was #ccc */
   border-radius: 8px;
   font-size: 16px;
   transition: border 0.3s;
 }
 
 .input-field:focus {
-  border-color: #007bff;
+  border-color: var(--primary); /* was #007bff */
   outline: none;
 }
 
 .primary-btn {
   padding: 12px;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary); /* was #007bff */
+  color: var(--text-light);
   border: none;
   border-radius: 8px;
   font-weight: 600;
@@ -58,15 +58,15 @@ label {
 }
 
 .primary-btn:hover {
-  background-color: #0056b3;
+  background-color: #6b4328; /* darker primary shade */
 }
 
 .secondary-btn {
   margin-top: 10px;
   padding: 10px;
   background-color: transparent;
-  border: 2px solid #007bff;
-  color: #007bff;
+  border: 2px solid var(--primary); /* was #007bff */
+  color: var(--primary);
   border-radius: 8px;
   font-weight: 600;
   font-size: 16px;
@@ -75,12 +75,12 @@ label {
 }
 
 .secondary-btn:hover {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--primary);
+  color: var(--text-light);
 }
 
 .error-message {
-  color: #d9534f;
+  color: var(--error); /* was #d9534f */
   font-weight: 600;
 }
 
@@ -98,13 +98,13 @@ label {
   display: inline-block;
   margin: 1em;
   font-size: 0.95rem;
-  color: #007bff;
+  color: var(--primary); /* was #007bff */
   text-decoration: none;
   transition: color 0.3s ease, text-decoration 0.3s ease;
   cursor: pointer;
 }
 
 .routing-links a:hover {
-  color: #0056b3;
+  color: #6b4328; /* darker primary */
   text-decoration: underline;
 }

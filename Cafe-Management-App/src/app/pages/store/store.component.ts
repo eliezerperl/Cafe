@@ -24,7 +24,6 @@ export class StoreComponent {
 
         this.beverages = data.map(bev => {
           const cartItem = cartItems.find(ci => ci.beverage.id === bev.id);
-          // Subtract cart quantity from stock (with safeguard against negative)
           const adjustedStock = cartItem
             ? Math.max(0, bev.unitsInStock - cartItem.quantity)
             : bev.unitsInStock;

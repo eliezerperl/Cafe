@@ -7,15 +7,15 @@
 .add-btn {
   padding: 5px 12px;
   font-size: 14px;
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--primary); /* replaced #4caf50 */
+  color: var(--text-light);
   border: none;
   cursor: pointer;
   border-radius: 3px;
 }
 
 .add-btn:hover {
-  background-color: #45a049;
+  background-color: #6e472d; /* darker version of primary */
 }
 
 /* Table styling like users */
@@ -27,13 +27,14 @@
 
 .beverages-table th,
 .beverages-table td {
-  border: 1px solid #ddd;
+  border: 1px solid var(--accent); /* light border */
   padding: 8px;
 }
 
 .beverages-table th {
-  background-color: #f2f2f2;
+  background-color: var(--accent);
   text-align: left;
+  color: var(--text-dark);
 }
 
 /* Inputs */
@@ -41,7 +42,7 @@
   width: 100%;
   padding: 6px;
   font-size: 13px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent);
   border-radius: 3px;
 }
 
@@ -55,10 +56,10 @@
   cursor: pointer;
 }
 
-.edit { background-color: #2196f3; color: white; }
-.save { background-color: #4caf50; color: white; }
-.cancel { background-color: #f44336; color: white; }
-.delete { background-color: #e91e63; color: white; }
+.edit   { background-color: #2196f3; color: var(--text-light); }    /* optional: map to another theme color if desired */
+.save   { background-color: var(--primary); color: var(--text-light); }
+.cancel { background-color: var(--error); color: var(--text-light); }
+.delete { background-color: #e91e63; color: var(--text-light); }
 
 .action-btn:hover {
   opacity: 0.9;
@@ -68,5 +69,5 @@
 .no-beverages {
   margin-top: 20px;
   font-size: 14px;
-  color: #777;
+  color: var(--text-dark);
 }
