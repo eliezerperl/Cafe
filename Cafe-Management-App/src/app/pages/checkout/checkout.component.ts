@@ -6,6 +6,7 @@ import { OrderService } from '../shared/services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { OrderDTO } from 'src/app/models/order.model';
 import { UserService } from 'src/app/services/user.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-checkout',
@@ -23,6 +24,7 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     private orderService: OrderService,
     private userService: UserService,
+    private alertService: AlertService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -40,7 +42,7 @@ export class CheckoutComponent implements OnInit {
 
   confirmCheckout() {
     const userId = this.userService.getUserId();
-    if (!userId) return alert('User not logged in.');
+    if (!userId) return this.alertService.show('User not logged in.');
 
     const order: OrderDTO = {
       customerName: this.customerName,
@@ -54,14 +56,14 @@ export class CheckoutComponent implements OnInit {
 
     this.orderService.placeOrder(order).subscribe({
       next: (response) => {
-        alert('Order placed successfully!');
+        this.alertService.show('Order placed successfully!');
         this.cartService.clearCart();
         const orderId = response.id;
         this.router.navigate(['/invoice', orderId]);
       },
       error: (err) => {
         console.error(err);
-        alert('Failed to place order.');
+        this.alertService.show('Failed to place order.');
       },
     });
   }

@@ -1,0 +1,40 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--secondary);
+  color: var(--text-dark);
+  padding: 2rem;
+  border-radius: 1rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal button {
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary);
+  color: var(--text-light);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal button:hover {
+  background-color: #6b4328;
+}

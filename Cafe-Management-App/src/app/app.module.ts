@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { IdleTimeoutToastComponent } from './shared/idle-timeout-toast/idle-timeout-toast.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { AlertModalComponent } from './shared/alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     NavbarComponent,
     IdleTimeoutToastComponent,
     SpinnerComponent,
+    AlertModalComponent,
   ],
   imports: [
     BrowserModule,

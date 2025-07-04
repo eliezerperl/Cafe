@@ -5,6 +5,12 @@
       [show]="showIdleToast"
       (logoutUser)="handleLogout()"
     ></app-idle-timeout-toast>
+    <app-alert-modal
+      [visible]="alertVisible"
+      [message]="alertMessage"
+      (closed)="closeAlert()"
+    >
+    </app-alert-modal>
     <app-spinner *ngIf="isLoading$ | async"></app-spinner>
     <router-outlet></router-outlet>
   </div>

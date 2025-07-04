@@ -3,6 +3,7 @@ import { IdleService } from './services/idle.service';
 import { ToastService } from './services/toast.service';
 import { SharedService } from './services/shared.service';
 import { Observable } from 'rxjs';
+import { AlertService } from './services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,23 @@ import { Observable } from 'rxjs';
 export class AppComponent {
   showIdleToast = false;
   isLoading$: Observable<boolean>;
+  alertMessage = '';
+  alertVisible = false;
 
   constructor(
     private idleService: IdleService,
     private sharedService: SharedService,
-    private modalService: ToastService
+    private modalService: ToastService,
+    private alertService: AlertService
   ) {
     this.isLoading$ = this.sharedService.loading$;
+
+    this.alertService.message$.subscribe(msg => {
+      if (msg) {
+        this.alertMessage = msg;
+        this.alertVisible = true;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -30,6 +41,11 @@ export class AppComponent {
     ['click', 'keydown', 'touchstart'].forEach((event) => {
       window.addEventListener(event, this.activityListener, true);
     });
+  }
+
+  closeAlert() {
+    this.alertVisible = false;
+    this.alertService.clear();
   }
 
   private activityListener = () => {

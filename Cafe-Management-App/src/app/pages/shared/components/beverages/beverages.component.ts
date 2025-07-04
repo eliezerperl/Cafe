@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Beverage } from 'src/app/models/beverage.model';
 import { BeverageService } from '../../services/beverage.service';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-beverages',
@@ -21,7 +22,10 @@ export class BeveragesComponent implements OnInit {
   editUnitsInStock: number | null = null;
   editType: string = '';
 
-  constructor(private beverageService: BeverageService) {}
+  constructor(
+    private beverageService: BeverageService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.loadBeverages();
@@ -57,15 +61,15 @@ export class BeveragesComponent implements OnInit {
 
   saveEdit(beverage: Beverage) {
     if (!this.editType.trim()) {
-      alert('Type is required');
+      this.alertService.show('Type is required');
       return;
     }
     if (this.editPrice === null || this.editPrice <= 0) {
-      alert('Price must be positive');
+      this.alertService.show('Price must be positive');
       return;
     }
     if (this.editUnitsInStock === null || this.editUnitsInStock < 0) {
-      alert('Units in stock cannot be negative');
+      this.alertService.show('Units in stock cannot be negative');
       return;
     }
 
@@ -80,7 +84,7 @@ export class BeveragesComponent implements OnInit {
           this.loadBeverages();
           this.cancelEditing();
         },
-        error: () => alert('Failed to update beverage'),
+        error: () => this.alertService.show('Failed to update beverage'),
       });
   }
 
@@ -112,7 +116,7 @@ export class BeveragesComponent implements OnInit {
           this.loadBeverages();
           this.cancelAdd();
         },
-        error: () => alert('Failed to add beverage'),
+        error: () => this.alertService.show('Failed to add beverage'),
       });
   }
 
