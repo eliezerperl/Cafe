@@ -4,6 +4,7 @@ export interface Beverage {
   type: string;
   price: number;
   unitsInStock: number;
+  imageUrl?: string;
 }
 
 export interface BeverageDTO {

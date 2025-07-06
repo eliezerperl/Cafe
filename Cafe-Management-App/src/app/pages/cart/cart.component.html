@@ -1,9 +1,12 @@
 <div class="cart-page">
   <h2>Your Cart</h2>
 
-  <div *ngIf="cartItems.length === 0">
-    <p>Your cart is empty.</p>
-    <button (click)="backToStore()">Back to Store</button>
+  <div *ngIf="cartItems.length === 0" class="empty-cart-container">
+    <div class="empty-cart-card">
+      <h2 class="empty-title">Your Cart is Empty</h2>
+      <p class="empty-subtitle">Looks like you haven't added anything yet.</p>
+      <button (click)="backToStore()" class="back-button">← Back to Store</button>
+    </div>
   </div>
 
   <div *ngIf="cartItems.length > 0" class="content-holder">

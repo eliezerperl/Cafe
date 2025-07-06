@@ -1,10 +1,16 @@
-
 <h2 class="store-header">Welcome to the Store</h2>
 
 <div class="store-container">
   <div *ngIf="beverages.length === 0">Loading beverages...</div>
   <div class="beverage-card" *ngFor="let beverage of beverages">
-    <p>Type: {{ beverage.type }}</p>
+    <p>
+      <img
+        [src]="beverage.imageUrl"
+        alt="{{ beverage.type }}"
+        class="beverage-img"
+      />
+      {{ beverage.type }}
+    </p>
     <p>Price: ₪{{ beverage.price }}</p>
     <p>Stock: {{ beverage.unitsInStock }}</p>
     <button

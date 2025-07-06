@@ -13,7 +13,6 @@
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 2rem;
-  background-color: var(--secondary);
 }
 
 .beverage-card {
@@ -39,6 +38,9 @@
 }
 
 .beverage-card p {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin: 0.25rem 0;
   color: var(--text-dark);
 }

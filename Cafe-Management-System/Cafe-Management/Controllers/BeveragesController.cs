@@ -1,4 +1,5 @@
-﻿using Cafe_ManagementDAL.Data;
+﻿using System.IO;
+using Cafe_ManagementDAL.Data;
 using Cafe_ManagementDAL.Entities;
 using Cafe_ManagementDAL.Entities.DTOs;
 using Cafe_ManagementDAL.Enums;
@@ -20,11 +21,12 @@ namespace Cafe_Management.Controllers
 	{
 
 		private readonly IBeverageService _beverageService;
+		private readonly IWebHostEnvironment _env;
 
-		public BeveragesController(IBeverageService beverageService)
+		public BeveragesController(IBeverageService beverageService, IWebHostEnvironment webHostEnvironment)
 		{
-
 			_beverageService = beverageService;
+			_env = webHostEnvironment;
 		}
 
 		[Authorize]
@@ -64,7 +66,7 @@ namespace Cafe_Management.Controllers
 
 		[Authorize(Policy = "AdminOrOwner")]
 		[HttpPost] //AUTHORIZED - ADMIN OR OWNER
-		public async Task<ActionResult<Beverage>> PostBeverage(BeverageDTO beverageDto)
+		public async Task<ActionResult<Beverage>> PostBeverage([FromForm] BeverageDTO beverageDto)
 		{
 			if (beverageDto == null)
 			{
@@ -78,12 +80,33 @@ namespace Cafe_Management.Controllers
 			{
 				return BadRequest("Units in stock cannot be negative.");
 			}
+			var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", "ico", ".webp" };
+			var extension = Path.GetExtension(beverageDto.Image.FileName).ToLowerInvariant();
+			if (!allowedExtensions.Contains(extension)) {
+				return BadRequest("Only image files (.jpg, .jpeg, .png, .gif .ico, .webp) are allowed.");
+			}
+			if (beverageDto.Image == null || beverageDto.Image.Length == 0) {
+				return BadRequest("Image is required.");
+			}
+
+			var uploads = Path.Combine(_env.WebRootPath, "images");
+			Directory.CreateDirectory(uploads);
+
+			var filename = beverageDto.Type + Path.GetExtension(beverageDto.Image.FileName);
+			var filePath = Path.Combine(uploads, filename);
+
+			using (var stream = new FileStream(filePath, FileMode.Create)) {
+				await beverageDto.Image.CopyToAsync(stream);
+			}
+
+			var imageUrl = $"{Request.Scheme}://{Request.Host}/images/{filename}";
 			Beverage beverage = new Beverage
 			{
 				Id = Guid.NewGuid(),
 				Type = beverageDto.Type,
 				Price = beverageDto.Price,
-				UnitsInStock = beverageDto.Quantity
+				UnitsInStock = beverageDto.Quantity,
+				ImageUrl = imageUrl
 			};
 
 			await _beverageService.CreateAsync(beverage);
@@ -92,10 +115,21 @@ namespace Cafe_Management.Controllers
 			return CreatedAtAction("GetBeverage", new { id = beverage.Id }, beverage);
 		}
 
+
 		[Authorize(Policy = "AdminOrOwner")]
 		[HttpDelete("{id}")] //AUTHORIZED - ADMIN OR OWNER
 		public async Task<IActionResult> DeleteBeverage(Guid id)
 		{
+			var beverage = await _beverageService.GetByIdAsync(id);
+			if (!string.IsNullOrEmpty(beverage.ImageUrl)) {
+				// Extract filename from URL
+				var filename = Path.GetFileName(new Uri(beverage.ImageUrl).LocalPath);
+				var imagePath = Path.Combine(_env.WebRootPath, "images", filename);
+
+				if (System.IO.File.Exists(imagePath)) {
+					System.IO.File.Delete(imagePath);
+				}
+			}
 			await _beverageService.DeleteAsync(id);
 			//NO NEED TO CHECK FOR NULL HERE AS IT WILL BE HANDLED BY THE SERVICE
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Beverage, BeverageDTO } from 'src/app/models/beverage.model';
+import { Beverage } from 'src/app/models/beverage.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -28,8 +28,8 @@ export class BeverageService {
     );
   }
 
-  addBeverage(beverageDto: BeverageDTO): Observable<Beverage> {
-    return this.http.post<Beverage>(`${this.apiUrl}`, beverageDto);
+  addBeverage(data: FormData): Observable<Beverage> {
+    return this.http.post<Beverage>(`${this.apiUrl}`, data);
   }
 
   deleteBeverage(id: string): Observable<void> {

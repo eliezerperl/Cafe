@@ -22,6 +22,6 @@ namespace Cafe_ManagementDAL.Entities {
 
 		[Range(0, int.MaxValue, ErrorMessage = "Units in stock cannot be negative.")]
 		public int UnitsInStock { get; set; } = 0;
-
+		public string ImageUrl { get; set; }
 	}
 }

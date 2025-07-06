@@ -8,36 +8,44 @@
 
 <main class="main-container">
   <section>
-    <table *ngIf="!loading && beverages.length" class="beverages-table">
+    <!-- Always show table -->
+    <table *ngIf="!loading" class="beverages-table">
       <thead>
         <tr>
           <th>Type</th>
           <th>Price</th>
           <th>Units In Stock</th>
+          <th>Image</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
+        <!-- Row if no beverages -->
+        <tr *ngIf="!beverages.length && !addingBeverage">
+          <td colspan="5" class="no-data">No beverages available.</td>
+        </tr>
+
+        <!-- Existing beverage rows -->
         <tr *ngFor="let beverage of beverages">
-          <!-- Type -->
           <td *ngIf="editingId !== beverage.id">{{ beverage.type }}</td>
           <td *ngIf="editingId === beverage.id">
             <div>{{ beverage.type }}</div>
           </td>
 
-          <!-- Price -->
           <td *ngIf="editingId !== beverage.id">₪{{ beverage.price }}</td>
           <td *ngIf="editingId === beverage.id">
             <input type="number" [(ngModel)]="editPrice" min="1" />
           </td>
 
-          <!-- Units In Stock -->
           <td *ngIf="editingId !== beverage.id">{{ beverage.unitsInStock }}</td>
           <td *ngIf="editingId === beverage.id">
             <input type="number" [(ngModel)]="editUnitsInStock" min="0" />
           </td>
 
-          <!-- Actions -->
+          <td class="image-preview">
+            <img *ngIf="beverage.imageUrl" [src]="beverage.imageUrl" alt="Beverage" width="50" />
+          </td>
+
           <td class="action-buttons">
             <ng-container *ngIf="editingId !== beverage.id">
               <button class="action-btn edit" (click)="startEditing(beverage)">Edit</button>
@@ -50,32 +58,16 @@
             </ng-container>
           </td>
         </tr>
+
         <!-- Row for Adding New Beverage -->
         <tr *ngIf="addingBeverage">
           <td><input [(ngModel)]="newBeverage.type" placeholder="Type" /></td>
+          <td><input type="number" [(ngModel)]="newBeverage.price" min="1" placeholder="Price" /></td>
+          <td><input type="number" [(ngModel)]="newBeverage.unitsInStock" min="0" placeholder="Stock" /></td>
+          <td><input type="file" (change)="onFileSelected($event)" accept="image/*" /></td>
           <td>
-            <input
-              type="number"
-              [(ngModel)]="newBeverage.price"
-              min="1"
-              placeholder="Price"
-            />
-          </td>
-          <td>
-            <input
-              type="number"
-              [(ngModel)]="newBeverage.unitsInStock"
-              min="0"
-              placeholder="Stock"
-            />
-          </td>
-          <td>
-            <button class="action-btn save" (click)="createBeverage()">
-              Create
-            </button>
-            <button class="action-btn cancel" (click)="cancelAdd()">
-              Cancel
-            </button>
+            <button class="action-btn save" (click)="createBeverage()">Create</button>
+            <button class="action-btn cancel" (click)="cancelAdd()">Cancel</button>
           </td>
         </tr>
       </tbody>

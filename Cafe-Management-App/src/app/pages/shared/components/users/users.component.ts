@@ -79,12 +79,16 @@ export class UsersComponent implements OnInit {
   //ADD
   startAdd() {
     this.addingUser = true;
-    this.cancelEdit(); // cancel any ongoing edits
+    this.cancelEdit();
   }
 
   cancelAdd() {
     this.addingUser = false;
-    this.newUser = { id: '', userName: '', role: Role.User };
+    this.newUser = {
+      id: '00000000-0000-0000-0000-000000000000',
+      userName: '',
+      role: Role.User,
+    };
   }
 
   createUser() {

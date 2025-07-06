@@ -110,10 +110,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-//await using (var scope = app.Services.CreateAsyncScope()) { //to use if not using update-database with migrations
-//	using var context = scope.ServiceProvider.GetService<CafeContext>();
-//	await context.Database.EnsureCreatedAsync();
-//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -125,6 +121,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseCors("AngularApp");
 

@@ -4,6 +4,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  background-image: url("https://static.vecteezy.com/system/resources/previews/011/332/525/non_2x/hand-drawn-coffee-concept-background-free-vector.jpg");
+  background-position: center;
+  background-size: cover;
 }
 
 :root {

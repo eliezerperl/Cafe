@@ -1,4 +1,5 @@
 ﻿using Cafe_ManagementDAL.Enums;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,10 @@ namespace Cafe_ManagementDAL.Entities.DTOs
 
 		[Required]
 		public int Price { get; set; }
+
+		[Required]
+		public IFormFile Image { get; set; }
+
 
 	}
 }
