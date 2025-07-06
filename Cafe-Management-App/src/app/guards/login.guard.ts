@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { SharedService } from '../services/shared.service';
 
 export const loginGuard = () => {
-  const authService = inject(AuthService);
+  const sharedService = inject(SharedService);
   const router = inject(Router);
 
-  if (authService.isLoggedIn()) {
+  if (sharedService.isLoggedIn()) {
     // Redirect logged-in users away from login page
     console.log('Login guard prevented you from navigating');
     router.navigate(['/dashboard']);

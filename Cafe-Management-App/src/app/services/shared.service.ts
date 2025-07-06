@@ -13,6 +13,9 @@ export class SharedService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
   public loading$ = this.loadingSubject.asObservable();
 
+  private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
+  public loggedIn$ = this.loggedInSubject.asObservable();
+
   private refreshSub: Subscription | null = null;
   private countdownSub: Subscription | null = null;
   private countdownSeconds = 300; // 5 minutes
@@ -31,10 +34,17 @@ export class SharedService {
     this.loadingSubject.next(false);
   }
 
+  loginActions(token: string) {
+    this.setLoggedIn();
+    this.userService.parseToken(token);
+    this.startAutoRefresh();
+    this.router.navigate(['/dashboard']);
+  }
+
   logoutActions() {
     this.logoutSubject.next(); // Notifies subscribers
     this.userService.clearUser();
-    this.authService.setNotLoggedIn();
+    this.setNotLoggedIn();
     this.stopAutoRefresh();
     this.router.navigate(['/login']);
   }
@@ -49,11 +59,26 @@ export class SharedService {
     });
   }
 
+  setLoggedIn() {
+    this.loggedInSubject.next(true);
+  }
+
+  setNotLoggedIn() {
+    this.loggedInSubject.next(false);
+  }
+
+  isLoggedIn(): boolean {
+    if (this.loggedInSubject) {
+      return this.loggedInSubject.getValue();
+    }
+    return false;
+  }
+
   startAutoRefresh(): void {
     this.stopAutoRefresh(); // ensure no duplication
     console.log('Started watching for Auto Refresh');
     const userId = this.userService.getUserId();
-    if (!userId || !this.authService.isLoggedIn()) return;
+    if (!userId || !this.isLoggedIn()) return;
 
     // Start refresh interval
     this.refreshSub = interval(this.countdownSeconds * 1000).subscribe(() => {

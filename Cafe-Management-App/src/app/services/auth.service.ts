@@ -12,9 +12,6 @@ import { User } from '../models/user.model';
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
 
-  private loggedInSubject = new BehaviorSubject<boolean>(this.isLoggedIn());
-  public loggedIn$ = this.loggedInSubject.asObservable();
-
   constructor(private http: HttpClient) {}
 
   login(credentials: AuthRequest): Observable<AuthResponse> {
@@ -50,20 +47,5 @@ export class AuthService {
     return this.register(credentials).pipe(
       switchMap(() => this.login(credentials))
     );
-  }
-
-  setLoggedIn() {
-    this.loggedInSubject.next(true);
-  }
-
-  setNotLoggedIn() {
-    this.loggedInSubject.next(false);
-  }
-
-  isLoggedIn(): boolean {
-    if (this.loggedInSubject) {
-      return this.loggedInSubject.getValue();
-    }
-    return false;
   }
 }

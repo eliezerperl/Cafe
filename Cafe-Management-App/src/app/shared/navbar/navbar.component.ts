@@ -22,7 +22,6 @@ export class NavbarComponent {
   justLoggedIn = false;
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private cartService: CartService,
     private sharedService: SharedService,
@@ -31,7 +30,7 @@ export class NavbarComponent {
   ) {}
 
   ngOnInit() {
-    this.authService.loggedIn$.subscribe((status) => {
+    this.sharedService.loggedIn$.subscribe((status) => {
       this.isLoggedIn = status;
       if (status) {
         // User just logged in
@@ -53,7 +52,7 @@ export class NavbarComponent {
         this.currentRoute = event.urlAfterRedirects;
         this.showCart =
           this.isLoggedIn && this.shouldShowCart(this.currentRoute);
-          
+
         if (this.justLoggedIn) {
           // We are at first navigation after login, hide back button and reset flag
           this.showBack = false;

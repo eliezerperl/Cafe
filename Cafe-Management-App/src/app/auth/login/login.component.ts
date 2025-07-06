@@ -47,11 +47,8 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           console.log('Login success', response);
-          this.authService.setLoggedIn();
-          this.userService.parseToken(response.token);
           this.idleService.startWatching();
-          this.sharedService.startAutoRefresh();
-          this.router.navigate(['/dashboard']);
+          this.sharedService.loginActions(response.token);
         },
         error: (error) => {
           console.log(error);

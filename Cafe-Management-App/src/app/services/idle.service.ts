@@ -13,7 +13,7 @@ export class IdleService {
 
   constructor(
     private router: Router,
-    private modalService: ToastService,
+    private toastService: ToastService,
     private sharedService: SharedService,
   ) {
     this.sharedService.logout$.subscribe(() => {
@@ -35,7 +35,7 @@ export class IdleService {
   public stopWatching() {
     clearTimeout(this.idleTimeoutId);
     clearTimeout(this.warningTimeoutId);
-    this.modalService.closeToast();
+    this.toastService.closeToast();
 
     ['click', 'mousemove', 'keydown', 'touchstart'].forEach((event) =>
       window.removeEventListener(event, this.boundResetTimer)
@@ -53,11 +53,11 @@ export class IdleService {
   }
 
   private showWarningPopup() {
-    this.modalService.openToast();
+    this.toastService.openToast();
     this.warningTimeoutId = setTimeout(() => {
       this.sharedService.logout();
       this.router.navigate(['/login']);
-      this.modalService.closeToast();
+      this.toastService.closeToast();
     }, this.warningDuration);
   }
 }
