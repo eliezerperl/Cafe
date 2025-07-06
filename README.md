@@ -4,7 +4,8 @@ A full-stack Cafe Management application with an **Angular** frontend and a **.N
 
 Manage beverages, orders, users, and roles with a modern UI and robust backend services.
 
-Live demo at https://eliezers-cafe-management.vercel.app (In Memory DB)
+Live demo at https://eliezers-cafe-management.vercel.app (In Memory DB)  
+(First API call will take roughly 15 seconds to wake up server)
 ---
 
 ## Features
